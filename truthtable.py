@@ -1,17 +1,16 @@
-from boolean import *
 from tabulate import tabulate
+from evaluator import evaluate
 
 class TruthTable:
     def __init__(self, input_string, result_var='F'):
         self.formula = TruthTable.make_pretty(input_string)
-        self.data = TruthTable.make_calculable(input_string)
         self.resval = result_var
         self.vars = set()
-        for letter in self.data:
+        for letter in self.formula:
             if letter.isalpha():
                 self.vars.add(letter)
         self.vars = list(sorted(self.vars))
-        self.generate()
+        self.table = []
 
     @staticmethod
     def make_pretty(s):
@@ -29,26 +28,13 @@ class TruthTable:
             res += ' '
         return res+s[-1]
 
-    @staticmethod
-    def make_calculable(s):
-        replaces = [
-            ('!', '~'),
-            ('&', '*'),
-            ('|', '+'),
-            ('<->', '|'),
-            ('->', '&')
-        ]
-        for f, t in replaces:
-            s = s.replace(f, t)
-        return s
-
     def generate(self):
-        line = [0] * len(self.vars)
         self.table = []
+        line = [0] * len(self.vars)
         while True:
-            args = dict(zip(self.vars, [Boolean(i) for i in line]))
-            res = eval(self.data, args)
-            self.table.append(tuple(line) + (int(res),))
+            args = dict(zip(self.vars, line))
+            res = evaluate(self.formula, args, int)
+            self.table.append(tuple(line) + (res,))
             if not 0 in line:
                 break
             for i in range(len(line)-1,-1,-1):
@@ -62,4 +48,4 @@ class TruthTable:
         return 'TruthTable({}, {})'.format(self.formula, self.resval)
 
     def __str__(self):
-        return self.formula + '\n' + tabulate(self.table, headers=self.vars + [self.resval])
+        return self.resval + ' = ' + self.formula + '\n' + (tabulate(self.table, headers=self.vars + [self.resval]) if self.table else 'Not generated')
