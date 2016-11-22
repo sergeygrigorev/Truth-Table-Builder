@@ -16,7 +16,7 @@ class Boolean:
 
     def __invert__(self):
         '''
-        Negotiation
+        Negation
         '''
         return Boolean(not self.val)
 

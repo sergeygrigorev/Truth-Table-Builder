@@ -1,5 +1,5 @@
-# Boolean-Formula-Evaluator
-Simple Python program that helps evaluating boolean formula
+# Truth Table Builder
+Simple Python program that helps evaluating boolean formula and building truth tables
 
 ## Usage
 
