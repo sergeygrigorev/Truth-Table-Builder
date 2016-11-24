@@ -7,7 +7,7 @@ Operations:
 
 * Negation
 
-  !A
+  ~A
 
 * Conjunction
 

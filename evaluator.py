@@ -1,9 +1,9 @@
 from boolean import Boolean
 
+
 def evaluate(formula, args, res_type=bool):
     def make_calculable(s):
         replaces = (
-            ('!', '~'),
             ('&', '*'),
             ('|', '+'),
             ('<->', '|'),
@@ -14,5 +14,5 @@ def evaluate(formula, args, res_type=bool):
         return s
 
     formula = make_calculable(formula)
-    args = {k : Boolean(args[k]) for k in args}
+    args = {k: Boolean(args[k]) for k in args}
     return res_type(eval(formula, args))

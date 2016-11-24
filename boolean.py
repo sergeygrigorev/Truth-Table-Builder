@@ -12,37 +12,34 @@ class Boolean:
         return self.val
 
     def __int__(self):
-        return 1 if self.val else 0
+        return 1 if self else 0
 
     def __invert__(self):
         '''
         Negation
         '''
-        return Boolean(not self.val)
+        return Boolean(not self)
 
     def __mul__(self, other):
         '''
         Conjunction
         '''
-        return Boolean(self.val and other.val)
+        return Boolean(self and other)
 
     def __add__(self, other):
         '''
         Disjunction
         '''
-        return Boolean(self.val or other.val)
+        return Boolean(self or other)
 
     def __and__(self, other):
         '''
         Implication
         '''
-        return Boolean(True if self.val == other.val else other.val)
+        return Boolean(not self or other)
 
     def __or__(self, other):
         '''
         Equality
         '''
         return Boolean(self.val == other.val)
-
-T = Boolean(True)
-F = Boolean(False)
