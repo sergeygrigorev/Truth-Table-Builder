@@ -3,7 +3,13 @@ Simple Python program that helps evaluating boolean formula and building truth t
 
 ## Usage
 
-Operations:
+`python main.py < filename`
+
+or
+
+`python main.py filename`
+
+## Operations:
 
 * Negation
 
