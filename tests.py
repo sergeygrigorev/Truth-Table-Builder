@@ -3,7 +3,7 @@ import unittest
 from truthtable import TruthTable
 
 
-class TestStringMethods(unittest.TestCase):
+class TestTruthTable(unittest.TestCase):
     def test_identity(self):
         t = TruthTable('A')
         t.generate()
